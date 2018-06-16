@@ -1,0 +1,1 @@
+aut2exe /in ButtonClick.au3 /out ButtonClick.exe /console /legalcopyright "Copyright (C) 2018 USI" /originalfilename ButtonClick.exe /productversion 1.0.0.0 /fileversion 1.0.0.0
