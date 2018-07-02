@@ -2,7 +2,6 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Outfile=ButtonClick.exe
 #AutoIt3Wrapper_Change2CUI=y
-#AutoIt3Wrapper_Res_Comment=Add waitting the exe window max time-out to be 15S and change all the exit(-1) to exit(1)
 #AutoIt3Wrapper_Res_Description=ButtonClick.exe
 #AutoIt3Wrapper_Res_Fileversion=1.0.0.4
 #AutoIt3Wrapper_Res_LegalCopyright=Copyright (C) 2018 USI
@@ -86,15 +85,22 @@ Else
 	  MsgBox(4096, "Error", "Not declare the buttonID")
 	  exit(1)
    EndIf
-
+   WinMove($tittle, $text,20,0,600,400)
    WinActivate($tittle)
    $control = ControlGetHandle($handle,"",$buttonID)
    If @error Then
 	  MsgBox(4096, "Error", "Could not find the correct buttonID of "&$buttonID )
 	  exit(1)
    Else
-	  ControlClick($handle, "", $control)
-	  exit(0)
+	  if ControlClick($handle, "", $control) Then
+			Sleep(1000)
+			WinSetState($tittle, $text,@SW_MINIMIZE)
+			exit(0)
+	  Else
+			MsgBox(4096, "Error", "Auto click the buttonID of "&$buttonID & " Error!")
+			exit(2)
+	  EndIf
+
    EndIf
 
 EndIf
